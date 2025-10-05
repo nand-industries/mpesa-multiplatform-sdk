@@ -1,0 +1,29 @@
+# IDE files
+.idea/
+*.iml
+
+# Kotlin build cache
+.kotlin/
+
+# Gradle
+.gradle/
+
+# Local configuration
+local.properties
+/local.properties
+
+# Build directories
+**/build/
+.externalNativeBuild/
+.cxx/
+
+# Misc
+.DS_Store
+*.log
+captures/
+
+# iOS Xcode user data
+**/xcuserdata/
+
+# Xcode secret files
+*.xcconfig

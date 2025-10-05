@@ -1,0 +1,70 @@
+<resources>
+    <!-- Successful Transaction -->
+    <string name="transaction_success_title">Transação concluída</string>
+    <string name="transaction_success_subtitle">Tudo certo!</string>
+    <string name="transaction_success_description">Sua transação foi realizada com sucesso. Obrigado por utilizar nosso serviço!</string>
+
+    <!-- Internal Error -->
+    <string name="transaction_internal_error_title">Falha na transação</string>
+    <string name="transaction_internal_error_subtitle">Ocorreu um erro interno!</string>
+    <string name="transaction_internal_error_description">O problema não é teu. Por favor, tente novamente mais tarde.</string>
+
+    <!-- Cancelled Transaction -->
+    <string name="transaction_cancelled_title">Falha na transação</string>
+    <string name="transaction_cancelled_subtitle">A transação foi cancelada</string>
+    <string name="transaction_cancelled_description">A transação foi cancelada pelo cliente.</string>
+
+    <!-- Timeout -->
+    <string name="transaction_timeout_title">Falha na transação</string>
+    <string name="transaction_timeout_subtitle">A transação expirou</string>
+    <string name="transaction_timeout_description">A transação expirou devido ao tempo limite! Por favor, tente novamente.</string>
+
+    <!-- Invalid Amount -->
+    <string name="transaction_invalid_amount_title">Falha na transação</string>
+    <string name="transaction_invalid_amount_subtitle">Valor inválido</string>
+    <string name="transaction_invalid_amount_description">O valor submetido é inválido! Por favor, verifique e tente novamente.</string>
+
+    <!-- Insufficient Balance -->
+    <string name="transaction_insufficient_balance_title">Falha na transação</string>
+    <string name="transaction_insufficient_balance_subtitle">Saldo insuficiente</string>
+    <string name="transaction_insufficient_balance_description">O saldo da sua conta M-Pesa é insuficiente para completar a transação. Por favor, verifique e tente novamente.</string>
+
+    <!-- Invalid Msisdn -->
+    <string name="transaction_invalid_msisdn_title">Falha na transação</string>
+    <string name="transaction_invalid_msisdn_subtitle">Número de telefone inválido</string>
+    <string name="transaction_invalid_msisdn_description">O número de telefone fornecido é inválido! Por favor, verifique e tente novamente.</string>
+
+    <!-- Generic Failure -->
+    <string name="transaction_failed_title">Falha na transação</string>
+    <string name="transaction_failed_subtitle">Algo deu errado</string>
+    <string name="transaction_failed_description">A transação falhou. Por favor, tente novamente.</string>
+
+    <!-- Unknown Error -->
+    <string name="transaction_unknown_error_title">Erro inesperado</string>
+    <string name="transaction_unknown_error_subtitle">Ocorreu um problema!</string>
+    <string name="transaction_unknown_error_description">Um erro desconhecido ocorreu. Por favor, tente novamente mais tarde.</string>
+
+    <!-- Processing Transaction -->
+    <string name="transaction_processing_title">Processando sua transação</string>
+    <string name="transaction_processing_subtitle">Sua transação está a ser processada</string>
+    <string name="transaction_processing_info">Para concluir a transação, aguarde pelas instruções que receberá via USSD e siga-as com atenção.</string>
+
+    <!-- Input Transaction Details -->
+    <string name="mpesa_pay_title">Pagar com M-Pesa</string>
+    <string name="action_close">Close</string>
+    <string name="merchant_payment_label">Pagar ao comerciante:</string>
+    <string name="transaction_details_title">Detalhes da transação</string>
+    <string name="total_amount_mt_label">TOTAL (MT)</string>
+    <string name="enter_mpesa_number_hint">Insira o número associado à sua conta M-PESA</string>
+    <string name="close_icon_description">Close Icon</string>
+    <string name="pay_now_button">PAGAR AGORA</string>
+    <string name="cancel_button">Cancelar</string>
+    <string name="error_invalid_phone_number">Insira um número de telefone válido</string>
+    <string name="error_phone_prefix">O número de telefone deve começar com 84 ou 85</string>
+    <string name="error_incomplete_phone_number">O número de telefone está incompleto</string>
+
+    <!-- Transaction Details Card -->
+    <string name="amount_label">Quantia (MZN)</string>
+    <string name="transaction_reference_label">Referência da transação</string>
+    <string name="customer_msisdn_label">Número de telefone</string>
+</resources>
