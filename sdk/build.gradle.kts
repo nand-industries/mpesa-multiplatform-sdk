@@ -25,7 +25,7 @@ kotlin {
         iosSimulatorArm64(),
     ).forEach {
         it.binaries.framework {
-            baseName = "MpesaMultiplatformSdk"
+            baseName = "sdk"
             isStatic = true
         }
     }
@@ -95,9 +95,9 @@ mavenPublishing {
     signAllPublications()
 
     coordinates(
-        group.toString(),
-        "mpesa-multiplatform-sdk",
-        version.toString(),
+        groupId = group.toString(),
+        artifactId = "mpesa-multiplatform-sdk",
+        version = version.toString(),
     )
 
     val repositorySlug = System.getenv("GITHUB_REPOSITORY") ?: "nand-industries/mpesa-multiplatform-sdk"

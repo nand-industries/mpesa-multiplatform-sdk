@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MpesaMultiplatform"
+rootProject.name = "mpesa-multiplatform-sdk"
 include(":androidApp")
 include(":sdk")
 include(":iosApp")
