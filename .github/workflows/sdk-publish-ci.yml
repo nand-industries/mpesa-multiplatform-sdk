@@ -1,0 +1,32 @@
+name: Publish SDK CI
+on:
+  release:
+    types: [ released, prereleased ]
+jobs:
+  publish:
+    name: Release build and publish
+    runs-on: macOS-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: 21
+
+      - name: Create local.properties
+        run: |
+          echo "MPESA_DEVELOPMENT_API_KEY=${{ secrets.MPESA_DEVELOPMENT_API_KEY }}" >> local.properties
+          echo "MPESA_PRODUCTION_API_KEY=${{ secrets.MPESA_PRODUCTION_API_KEY }}" >> local.properties
+          echo "MPESA_PUBLIC_KEY=${{ secrets.MPESA_PUBLIC_KEY }}" >> local.properties
+
+      - name: Publish to MavenCentral
+        run: ./gradlew publishToMavenCentral --no-configuration-cache
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_KEY_ID }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.GPG_KEY_CONTENTS }}

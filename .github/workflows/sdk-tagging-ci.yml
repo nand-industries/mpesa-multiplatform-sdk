@@ -1,0 +1,41 @@
+name: SDK Tagging CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: 'Version bump type'
+        type: choice
+        required: true
+        options: [ patch, minor, major ]
+        default: patch
+      prefix:
+        description: 'Tag prefix (e.g., sdk-v → sdk-v1.2.3)'
+        type: string
+        required: true
+        default: sdk-v
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history for tagging)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create tag (manual release)
+        uses: mathieudutour/github-tag-action@v6.2
+        id: tag_manual
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          release_branches: main
+          default_bump: ${{ inputs.bump }}
+          custom_tag_prefix: ${{ inputs.prefix }}
+
+      - name: Show created tag
+        run: |
+          echo "Created tag: ${{ steps.tag_manual.outputs.new_tag }}"
