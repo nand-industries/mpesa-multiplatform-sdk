@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## [1.0.0] - October 11, 2025
+
 ### 🚀 Initial Release
 
 The first official release of **M-Pesa Multiplatform SDK**.

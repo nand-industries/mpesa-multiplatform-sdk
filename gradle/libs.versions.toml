@@ -2,7 +2,7 @@
 # Core
 kotlin = "2.1.20"
 agp = "8.10.1"
-compose = "1.8.0-rc01"
+compose = "1.9.0"
 composeBom = "2025.04.01"
 
 # AndroidX
