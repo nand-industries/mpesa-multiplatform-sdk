@@ -1,6 +1,6 @@
 import UIKit
 import SwiftUI
-import sdk
+import MpesaMultiplatformSdk
 
 struct ComposePaymentView: UIViewControllerRepresentable {
     let amount: String
