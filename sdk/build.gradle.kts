@@ -90,11 +90,10 @@ compose.resources {
 }
 
 version = ProjectConfigurations.MpesaMultiplatformSdk.versionName
-group = ProjectConfigurations.MpesaMultiplatformSdk.namespace
+group = ProjectConfigurations.MpesaMultiplatformSdk.Publishing.group
 
 mavenPublishing {
     publishToMavenCentral()
-
     signAllPublications()
 
     coordinates(
