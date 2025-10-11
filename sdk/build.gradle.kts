@@ -13,7 +13,7 @@ plugins {
 }
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(ProjectConfigurations.Compiler.jdkVersion)
     androidTarget {
         publishLibraryVariants("release")
         instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
@@ -25,7 +25,7 @@ kotlin {
         iosSimulatorArm64(),
     ).forEach {
         it.binaries.framework {
-            baseName = "sdk"
+            baseName = ProjectConfigurations.MpesaMultiplatformSdk.baseName
             isStatic = true
         }
     }
@@ -68,11 +68,11 @@ kotlin {
 }
 
 android {
-    namespace = "io.github.nandindustries"
-    compileSdk = 36
+    namespace = ProjectConfigurations.MpesaMultiplatformSdk.namespace
+    compileSdk = ProjectConfigurations.MpesaMultiplatformSdk.compileSdk
 
     defaultConfig {
-        minSdk = 21
+        minSdk = ProjectConfigurations.MpesaMultiplatformSdk.minSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -85,9 +85,12 @@ android {
 
 compose.resources {
     publicResClass = true
-    packageOfResClass = "io.github.nandindustries.sdk.resources"
+    packageOfResClass = ProjectConfigurations.MpesaMultiplatformSdk.packageOfResClass
     generateResClass = always
 }
+
+version = ProjectConfigurations.MpesaMultiplatformSdk.versionName
+group = ProjectConfigurations.MpesaMultiplatformSdk.namespace
 
 mavenPublishing {
     publishToMavenCentral()
@@ -96,22 +99,24 @@ mavenPublishing {
 
     coordinates(
         groupId = group.toString(),
-        artifactId = "mpesa-multiplatform-sdk",
+        artifactId = ProjectConfigurations.MpesaMultiplatformSdk.Publishing.artifactId,
         version = version.toString(),
     )
 
-    val repositorySlug = System.getenv("GITHUB_REPOSITORY") ?: "nand-industries/mpesa-multiplatform-sdk"
+    val repositorySlug = System.getenv("GITHUB_REPOSITORY")
+        ?: ProjectConfigurations.MpesaMultiplatformSdk.Publishing.repositorySlug
 
     pom {
-        name = "M-Pesa Multiplatform SDK"
-        description = "Compose Multiplatform SDK for interacting with Vodacom M-Pesa APIs."
-        inceptionYear = "2025"
+        name = ProjectConfigurations.MpesaMultiplatformSdk.Publishing.name
+        description = ProjectConfigurations.MpesaMultiplatformSdk.Publishing.description
+        inceptionYear = ProjectConfigurations.MpesaMultiplatformSdk.Publishing.inceptionYear
         url = "https://github.com/$repositorySlug"
         licenses {
             license {
-                name = "The Apache License, Version 2.0"
-                url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
-                distribution = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+                name = ProjectConfigurations.MpesaMultiplatformSdk.Publishing.License.name
+                url = ProjectConfigurations.MpesaMultiplatformSdk.Publishing.License.url
+                distribution =
+                    ProjectConfigurations.MpesaMultiplatformSdk.Publishing.License.distribution
             }
         }
         developers {
@@ -119,6 +124,11 @@ mavenPublishing {
                 id = "callebdev"
                 name = "Calebe Joel Miquissene"
                 url = "https://calebemiquissene.com"
+            }
+            developer {
+                id = "yazaldefilimone"
+                name = "Yazalde Filimone"
+                url = "https://yazaldefilimone.com"
             }
         }
         scm {
