@@ -3,7 +3,7 @@ object ProjectConfigurations {
         const val versionName = "1.0.0"
         const val packageOfResClass = "io.github.nandindustries.sdk.resources"
         const val namespace = "io.github.nandindustries.android"
-        const val baseName = "sdk"
+        const val baseName = "MpesaMultiplatformSdk"
         const val minSdk = 21
         const val compileSdk = 36
 

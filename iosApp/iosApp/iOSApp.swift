@@ -1,5 +1,5 @@
 import SwiftUI
-import sdk
+import MpesaMultiplatformSdk
 
 @main
 struct iOSApp: App {
