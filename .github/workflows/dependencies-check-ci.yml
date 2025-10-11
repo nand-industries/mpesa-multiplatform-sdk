@@ -1,0 +1,40 @@
+name: Weekly Dependencies Checker CI
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: '0 18 * * 5' # runs every Friday at 6PM
+
+jobs:
+  check-dependency-updates:
+    name: Check for new versions of dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java JDK ${{ vars.JAVA_JDK_VERSION }}"
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: 21
+          cache: gradle
+
+      - name: Make gradle executable
+        run: chmod +x gradlew
+
+      - name: Check for new versions of dependencies
+        run: ./gradlew dependencyUpdates
+
+      - name: Add the content of the list of dependencies to the environment variable
+        id: get-dependencies-list
+        run: |
+          file_output=$(<build/dependencyUpdates/report.txt)
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "DEPENDENCIES_LIST_FILE<<$EOF" >> $GITHUB_OUTPUT
+          echo "$file_output" >> $GITHUB_OUTPUT
+          echo "$EOF" >> $GITHUB_OUTPUT
+
+      - name: Print the content of the environment variable
+        run: echo "${{ steps.get-dependencies-list.outputs.DEPENDENCIES_LIST_FILE }}"
