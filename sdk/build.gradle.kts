@@ -9,11 +9,12 @@ plugins {
     alias(libs.plugins.compose)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.kotlin.cocoapods)
     id("com.vanniktech.maven.publish") version "0.34.0"
 }
 
 kotlin {
-    jvmToolchain(ProjectConfigurations.Compiler.jdkVersion)
+    jvmToolchain(ProjectConfiguration.Compiler.jdkVersion)
     androidTarget {
         publishLibraryVariants("release")
         instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
@@ -25,9 +26,21 @@ kotlin {
         iosSimulatorArm64(),
     ).forEach {
         it.binaries.framework {
-            baseName = ProjectConfigurations.MpesaMultiplatformSdk.baseName
+            baseName = ProjectConfiguration.MpesaMultiplatformSdk.baseName
             isStatic = true
         }
+    }
+
+    cocoapods {
+        version = ProjectConfiguration.MpesaMultiplatformSdk.versionName
+        name = ProjectConfiguration.MpesaMultiplatformSdk.Publishing.cocoaPodsName
+        summary = ProjectConfiguration.MpesaMultiplatformSdk.Publishing.description
+        homepage = ProjectConfiguration.MpesaMultiplatformSdk.documentation
+
+        license = ProjectConfiguration.MpesaMultiplatformSdk.Publishing.License.licenseType
+        authors = "Calebe Miquissene, Yazalde Filimone"
+
+        ios.deploymentTarget = ProjectConfiguration.MpesaMultiplatformSdk.iOS.deploymentTarget
     }
 
     sourceSets {
@@ -68,11 +81,11 @@ kotlin {
 }
 
 android {
-    namespace = ProjectConfigurations.MpesaMultiplatformSdk.namespace
-    compileSdk = ProjectConfigurations.MpesaMultiplatformSdk.compileSdk
+    namespace = ProjectConfiguration.MpesaMultiplatformSdk.namespace
+    compileSdk = ProjectConfiguration.MpesaMultiplatformSdk.compileSdk
 
     defaultConfig {
-        minSdk = ProjectConfigurations.MpesaMultiplatformSdk.minSdk
+        minSdk = ProjectConfiguration.MpesaMultiplatformSdk.minSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -85,12 +98,12 @@ android {
 
 compose.resources {
     publicResClass = true
-    packageOfResClass = ProjectConfigurations.MpesaMultiplatformSdk.packageOfResClass
+    packageOfResClass = ProjectConfiguration.MpesaMultiplatformSdk.packageOfResClass
     generateResClass = always
 }
 
-version = ProjectConfigurations.MpesaMultiplatformSdk.versionName
-group = ProjectConfigurations.MpesaMultiplatformSdk.Publishing.group
+version = ProjectConfiguration.MpesaMultiplatformSdk.versionName
+group = ProjectConfiguration.MpesaMultiplatformSdk.Publishing.group
 
 mavenPublishing {
     publishToMavenCentral()
@@ -98,24 +111,24 @@ mavenPublishing {
 
     coordinates(
         groupId = group.toString(),
-        artifactId = ProjectConfigurations.MpesaMultiplatformSdk.Publishing.artifactId,
+        artifactId = ProjectConfiguration.MpesaMultiplatformSdk.Publishing.artifactId,
         version = version.toString(),
     )
 
     val repositorySlug = System.getenv("GITHUB_REPOSITORY")
-        ?: ProjectConfigurations.MpesaMultiplatformSdk.Publishing.repositorySlug
+        ?: ProjectConfiguration.MpesaMultiplatformSdk.Publishing.repositorySlug
 
     pom {
-        name = ProjectConfigurations.MpesaMultiplatformSdk.Publishing.name
-        description = ProjectConfigurations.MpesaMultiplatformSdk.Publishing.description
-        inceptionYear = ProjectConfigurations.MpesaMultiplatformSdk.Publishing.inceptionYear
+        name = ProjectConfiguration.MpesaMultiplatformSdk.Publishing.name
+        description = ProjectConfiguration.MpesaMultiplatformSdk.Publishing.description
+        inceptionYear = ProjectConfiguration.MpesaMultiplatformSdk.Publishing.inceptionYear
         url = "https://github.com/$repositorySlug"
         licenses {
             license {
-                name = ProjectConfigurations.MpesaMultiplatformSdk.Publishing.License.name
-                url = ProjectConfigurations.MpesaMultiplatformSdk.Publishing.License.url
+                name = ProjectConfiguration.MpesaMultiplatformSdk.Publishing.License.name
+                url = ProjectConfiguration.MpesaMultiplatformSdk.Publishing.License.url
                 distribution =
-                    ProjectConfigurations.MpesaMultiplatformSdk.Publishing.License.distribution
+                    ProjectConfiguration.MpesaMultiplatformSdk.Publishing.License.distribution
             }
         }
         developers {
