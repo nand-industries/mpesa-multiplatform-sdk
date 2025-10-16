@@ -21,6 +21,12 @@ jobs:
           java-version: 21
           cache: gradle
 
+      - name: Create local.properties
+        run: |
+          echo "MPESA_DEVELOPMENT_API_KEY=${{ secrets.MPESA_DEVELOPMENT_API_KEY }}" >> local.properties
+          echo "MPESA_PRODUCTION_API_KEY=${{ secrets.MPESA_PRODUCTION_API_KEY }}" >> local.properties
+          echo "MPESA_PUBLIC_KEY=${{ secrets.MPESA_PUBLIC_KEY }}" >> local.properties
+
       - name: Make gradle executable
         run: chmod +x gradlew
 
