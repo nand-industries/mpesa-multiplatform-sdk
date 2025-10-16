@@ -11,13 +11,12 @@ object ProjectConfiguration {
         object Publishing {
             const val artifactId = "mpesa-multiplatform-sdk"
             const val name = "M-Pesa Multiplatform SDK"
-
             const val group = "io.github.nand-industries"
             const val description =
                 "Compose Multiplatform SDK for interacting with Vodacom M-Pesa APIs."
             const val inceptionYear = "2025"
             const val repositorySlug = "nand-industries/mpesa-multiplatform-sdk"
-            const val cocoaPodsName = "MpesaMultiplatformSdkCocoaPod"
+            const val cocoaPodName = "MpesaMultiplatformSdkCocoaPod"
 
             object License {
                 const val name = "The Apache License, Version 2.0"

@@ -33,11 +33,12 @@ kotlin {
 
     cocoapods {
         version = ProjectConfiguration.MpesaMultiplatformSdk.versionName
-        name = ProjectConfiguration.MpesaMultiplatformSdk.Publishing.cocoaPodsName
+        name = ProjectConfiguration.MpesaMultiplatformSdk.Publishing.cocoaPodName
         summary = ProjectConfiguration.MpesaMultiplatformSdk.Publishing.description
         homepage = ProjectConfiguration.MpesaMultiplatformSdk.documentation
 
         license = ProjectConfiguration.MpesaMultiplatformSdk.Publishing.License.licenseType
+        source = "{ :git => 'git@github.com:nand-industries/mpesa-multiplatform-sdk.git', :tag => '$version' }"
         authors = "Calebe Miquissene, Yazalde Filimone"
 
         ios.deploymentTarget = ProjectConfiguration.MpesaMultiplatformSdk.iOS.deploymentTarget
