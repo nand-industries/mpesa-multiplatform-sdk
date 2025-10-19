@@ -9,4 +9,5 @@ plugins {
     alias(libs.plugins.kotlinx.serialization) apply false
     alias(libs.plugins.dependency.versions)
     alias(libs.plugins.kotlin.cocoapods) apply false
+    alias(libs.plugins.composeHotReload) apply false
 }

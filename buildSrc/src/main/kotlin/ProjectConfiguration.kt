@@ -2,11 +2,15 @@ object ProjectConfiguration {
     object MpesaMultiplatformSdk {
         const val versionName = "1.0.0"
         const val packageOfResClass = "io.github.nandindustries.sdk.resources"
-        const val namespace = "io.github.nandindustries.android"
+        const val androidNamespace = "io.github.nandindustries.android"
         const val baseName = "MpesaMultiplatformSdk"
         const val minSdk = 21
         const val compileSdk = 36
         const val documentation = "https://github.com/nand-industries/mpesa-multiplatform-sdk"
+
+        const val desktopPackageName = "io.github.nandindustries.sdk"
+
+        const val desktopMainClass = "$desktopPackageName.MainKt"
 
         object Publishing {
             const val artifactId = "mpesa-multiplatform-sdk"

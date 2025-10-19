@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
@@ -28,7 +29,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import io.github.alexzhirkevich.compottie.Compottie
@@ -62,8 +62,8 @@ fun ProcessTransactionScreen(
             transactionCompletionPublisher = SdkInternalDependencies.transactionCompletionPublisher,
         )
     }
-    val state by viewModel.state.collectAsStateWithLifecycle()
-    val transactionDetailsState by viewModel.transactionDetailsData.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsState()
+    val transactionDetailsState by viewModel.transactionDetailsData.collectAsState()
 
     ProcessTransactionUi(
         state = state,

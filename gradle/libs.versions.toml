@@ -1,8 +1,9 @@
 [versions]
 # Core
-kotlin = "2.1.20"
+kotlin = "2.2.20"
 agp = "8.10.1"
 compose = "1.9.0"
+composeHotReload = "1.0.0-rc02"
 composeBom = "2025.04.01"
 
 # AndroidX
@@ -68,6 +69,7 @@ ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negoti
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-ios = { module = "io.ktor:ktor-client-ios", version.ref = "ktor" }
+ktor-jetty = { module = "io.ktor:ktor-client-jetty-jakarta", version.ref = "ktor" }
 
 # Coil
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
@@ -82,6 +84,9 @@ compottie-resources = { module = "io.github.alexzhirkevich:compottie-resources",
 # Crypto
 cryptography-provider-apple = { module = "dev.whyoleg.cryptography:cryptography-provider-apple", version.ref = "cryptographyProviderApple" }
 
+# Coroutines
+kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
+
 # Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitExt" }
@@ -92,6 +97,7 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 compose = { id = "org.jetbrains.compose", version.ref = "compose" }
+composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "composeHotReload"}
 dependency-versions = { id = "com.github.ben-manes.versions", version.ref = "dependencyVersionsPlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }

@@ -1,5 +1,6 @@
 @file:OptIn(ExperimentalKotlinGradlePluginApi::class)
 
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 
@@ -10,6 +11,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.kotlin.cocoapods)
+    alias(libs.plugins.composeHotReload)
     id("com.vanniktech.maven.publish") version "0.34.0"
 }
 
@@ -30,6 +32,8 @@ kotlin {
             isStatic = true
         }
     }
+
+    jvm()
 
     cocoapods {
         version = ProjectConfiguration.MpesaMultiplatformSdk.versionName
@@ -63,11 +67,6 @@ kotlin {
             implementation(libs.ui.backhandler)
         }
 
-        commonTest.dependencies {
-            implementation(kotlin("test"))
-            implementation(libs.kotlinx.coroutines.test)
-        }
-
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.android)
@@ -77,11 +76,22 @@ kotlin {
             implementation(libs.cryptography.provider.apple)
             implementation(libs.ktor.ios)
         }
+
+        jvmMain.dependencies {
+            implementation(compose.desktop.currentOs)
+            implementation(libs.ktor.jetty)
+            implementation(libs.kotlinx.coroutines.swing)
+        }
+
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+            implementation(libs.kotlinx.coroutines.test)
+        }
     }
 }
 
 android {
-    namespace = ProjectConfiguration.MpesaMultiplatformSdk.namespace
+    namespace = ProjectConfiguration.MpesaMultiplatformSdk.androidNamespace
     compileSdk = ProjectConfiguration.MpesaMultiplatformSdk.compileSdk
 
     defaultConfig {
@@ -92,6 +102,18 @@ android {
     publishing {
         singleVariant("release") {
             withSourcesJar()
+        }
+    }
+}
+
+compose.desktop {
+    application {
+        mainClass = ProjectConfiguration.MpesaMultiplatformSdk.desktopMainClass
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = ProjectConfiguration.MpesaMultiplatformSdk.desktopPackageName
+            packageVersion = ProjectConfiguration.MpesaMultiplatformSdk.versionName
         }
     }
 }
