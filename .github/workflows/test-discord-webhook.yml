@@ -1,0 +1,26 @@
+name: Test Discord Webhook
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  notify:
+    name: Send notification to Discord
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Discord notification
+        uses: Ilshidur/action-discord@0.4.0
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: |
+            This is the first line
+            Second line
+            Third line on Discord
+            This is a PR on {{ EVENT_PAYLOAD.repository.full_name }}
