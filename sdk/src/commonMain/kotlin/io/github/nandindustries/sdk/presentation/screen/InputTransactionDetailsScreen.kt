@@ -168,6 +168,7 @@ private fun InputTransactionDetailsUi(
                     navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
                     titleContentColor = MaterialTheme.colorScheme.onPrimary,
                     actionIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                    subtitleContentColor = MaterialTheme.colorScheme.onPrimary,
                 ),
             )
         },

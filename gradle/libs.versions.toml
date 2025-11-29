@@ -1,44 +1,34 @@
 [versions]
 # Core
-kotlin = "2.1.20"
-agp = "8.10.1"
-compose = "1.9.0"
-composeBom = "2025.04.01"
+kotlin = "2.2.21"
+agp = "8.13.1"
+compose = "1.9.3"
+composeBom = "2025.11.01"
 
 # AndroidX
-coreKtx = "1.16.0"
-appcompat = "1.7.0"
-lifecycleRuntimeKtx = "2.8.7"
-lifecycleViewmodelAndroid = "2.8.7"
-lifecycleViewmodelCompose = "2.9.1"
-activityCompose = "1.10.1"
-navigationCompose = "2.9.0-beta01"
-navigationComposeCompat = "2.8.9"
+lifecycleViewmodelCompose = "2.9.6"
+activityCompose = "1.12.0"
+navigationCompose = "2.9.1"
+navigationComposeCompat = "2.9.6"
 
 # Testing
 junit = "4.13.2"
-junitExt = "1.2.1"
-espressoCore = "3.6.1"
+junitExt = "1.3.0"
+espressoCore = "3.7.0"
 
 # Compose Material
-material3Android = "1.3.2"
 materialIconsExtended = "1.7.3"
 
 # Libraries
 dependencyVersionsPlugin = "0.53.0"
-ktor = "3.1.2"
-coil = "3.0.4"
-kotlinx-serialization = "1.8.0"
-kotlinx-coroutines = "1.9.0"
-compottie = "2.0.0-rc04"
-cryptographyProviderApple = "0.4.0"
+ktor = "3.3.3"
+coil = "3.3.0"
+kotlinx-coroutines = "1.10.2"
+compottie = "2.0.2"
+cryptographyProviderApple = "0.5.0"
 
 [libraries]
-# AndroidX Core
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-
 # Lifecycle
-androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 
 # Compose
@@ -51,16 +41,12 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
-androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
 material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 ui-backhandler = { module = "org.jetbrains.compose.ui:ui-backhandler", version.ref = "compose" }
 
 # Navigation
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationComposeCompat" }
-
-# Serialization
-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
 # Ktor
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
@@ -98,6 +84,7 @@ kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref =
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-power-assert = { id = "org.jetbrains.kotlin.plugin.power-assert", version.ref = "kotlin" }
 
 [bundles]
 ktor = [
