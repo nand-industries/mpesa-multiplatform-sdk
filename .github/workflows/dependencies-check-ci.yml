@@ -48,5 +48,5 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           args: |
-            These are the outdated dependencies on being used in https://github.com/{{ EVENT_PAYLOAD.repository.full_name }}
+            These are the outdated dependencies being used in https://github.com/{{ EVENT_PAYLOAD.repository.full_name }}
             {{ steps.get-dependencies-list.outputs.DEPENDENCIES_LIST_FILE }}
