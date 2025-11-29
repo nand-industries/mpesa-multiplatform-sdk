@@ -11,7 +11,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.kotlin.cocoapods)
-    id("com.vanniktech.maven.publish") version "0.34.0"
+    alias(libs.plugins.kotlin.power.assert)
+    id("com.vanniktech.maven.publish") version "0.35.0"
 }
 
 kotlin {
@@ -159,4 +160,9 @@ mavenPublishing {
             developerConnection = "scm:git:ssh://git@github.com/$repositorySlug.git"
         }
     }
+}
+
+powerAssert {
+    functions = listOf("kotlin.assert", "kotlin.test.assertTrue", "kotlin.test.assertEquals", "kotlin.test.assertNull")
+    includedSourceSets = listOf("commonMain", "nativeMain")
 }
