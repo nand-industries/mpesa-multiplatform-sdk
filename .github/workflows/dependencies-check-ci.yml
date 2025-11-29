@@ -42,5 +42,11 @@ jobs:
           echo "$file_output" >> $GITHUB_OUTPUT
           echo "$EOF" >> $GITHUB_OUTPUT
 
-      - name: Print the content of the environment variable
-        run: echo "${{ steps.get-dependencies-list.outputs.DEPENDENCIES_LIST_FILE }}"
+      - name: Send notification on Discord
+        uses: Ilshidur/action-discord@0.4.0
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: |
+            These are the outdated dependencies on being used in https://github.com/{{ EVENT_PAYLOAD.repository.full_name }}
+            {{ steps.get-dependencies-list.outputs.DEPENDENCIES_LIST_FILE }}
