@@ -1,1 +1,1 @@
-xcReleaseFramework/MpesaMultiplatformSdk.xcframework filter=lfs diff=lfs merge=lfs -text
+xcReleaseFramework/** filter=lfs diff=lfs merge=lfs -text
