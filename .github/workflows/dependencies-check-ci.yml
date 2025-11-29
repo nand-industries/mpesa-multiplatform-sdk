@@ -42,12 +42,40 @@ jobs:
           echo "$file_output" >> $GITHUB_OUTPUT
           echo "$EOF" >> $GITHUB_OUTPUT
 
-      - name: Send notification on Discord
+      - name: Prepare truncated preview for Discord
+        id: deps-preview
+        run: |
+          if [ ! -f build/dependencyUpdates/report.txt ]; then
+          preview="No dependency update report was generated."
+          else
+          preview="$(head -c 1800 build/dependencyUpdates/report.txt)"
+          fi
+          
+          EOF_MARKER="$(dd if=/dev/urandom bs=15 count=1 status=none | base64)"
+          
+          {
+          echo "PREVIEW<<$EOF_MARKER"
+          echo "$preview"
+          if [ ${#preview} -ge 1800 ]; then
+           echo ""
+           echo "... (truncated — full report available in the workflow artifacts)"
+          fi
+          echo "$EOF_MARKER"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Send Discord notification
         uses: Ilshidur/action-discord@0.4.0
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           args: |
-            These are the outdated dependencies being used in https://github.com/{{ EVENT_PAYLOAD.repository.full_name }}
+            📦 **Weekly Dependency Update Report**
             
-            ${{ steps.get-dependencies-list.outputs.DEPENDENCIES_LIST_FILE }}
+            Repository:
+            https://github.com/{{ EVENT_PAYLOAD.repository.full_name }}
+            
+            🔗 **Full report (artifact):**
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            
+            📝 **Preview (truncated):**
+            ${{ steps.deps-preview.outputs.PREVIEW }}
