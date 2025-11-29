@@ -2,6 +2,7 @@
 
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.multiplatform)
@@ -14,7 +15,11 @@ plugins {
 }
 
 kotlin {
+    val xcframeworkName = ProjectConfiguration.MpesaMultiplatformSdk.baseName
+    val xcf = XCFramework(xcFrameworkName = xcframeworkName)
+
     jvmToolchain(ProjectConfiguration.Compiler.jdkVersion)
+
     androidTarget {
         publishLibraryVariants("release")
         instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
@@ -26,7 +31,12 @@ kotlin {
         iosSimulatorArm64(),
     ).forEach {
         it.binaries.framework {
-            baseName = ProjectConfiguration.MpesaMultiplatformSdk.baseName
+            baseName = xcframeworkName
+            binaryOption(
+                name = "bundleId",
+                value = "${ProjectConfiguration.MpesaMultiplatformSdk.Publishing.group}.$xcframeworkName",
+            )
+            xcf.add(this)
             isStatic = true
         }
     }
