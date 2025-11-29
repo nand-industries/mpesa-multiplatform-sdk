@@ -49,4 +49,5 @@ jobs:
         with:
           args: |
             These are the outdated dependencies being used in https://github.com/{{ EVENT_PAYLOAD.repository.full_name }}
-            {{ steps.get-dependencies-list.outputs.DEPENDENCIES_LIST_FILE }}
+            
+            ${{ steps.get-dependencies-list.outputs.DEPENDENCIES_LIST_FILE }}
