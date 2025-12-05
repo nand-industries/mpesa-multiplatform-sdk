@@ -1,3 +1,5 @@
+// swift-tools-version:5.9
+
 //
 // Created by Calleb Joel Miquissene on 29.11.25.
 //
