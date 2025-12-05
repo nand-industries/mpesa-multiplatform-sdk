@@ -1,6 +1,6 @@
 object ProjectConfiguration {
     object MpesaMultiplatformSdk {
-        const val versionName = "1.0.0"
+        const val versionName = "2.0.0"
         const val packageOfResClass = "io.github.nandindustries.sdk.resources"
         const val namespace = "io.github.nandindustries.android"
         const val baseName = "MpesaMultiplatformSdk"
