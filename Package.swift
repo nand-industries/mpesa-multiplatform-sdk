@@ -15,7 +15,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "MpesaMultiplatformSdk",
-            path: ".xcReleaseFramework/MpesaMultiplatformSdk.xcframework"
+            path: "xcReleaseFramework/MpesaMultiplatformSdk.xcframework"
         ),
     ]
 )
