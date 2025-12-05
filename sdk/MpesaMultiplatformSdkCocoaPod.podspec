@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'MpesaMultiplatformSdkCocoaPod'
-    spec.version                  = '1.0.0'
+    spec.version                  = '2.0.0'
     spec.homepage                 = 'https://github.com/nand-industries/mpesa-multiplatform-sdk'
     spec.source                   = { :http=> ''}
     spec.authors                  = 'Calebe Miquissene, Yazalde Filimone'
