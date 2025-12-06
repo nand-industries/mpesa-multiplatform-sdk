@@ -17,7 +17,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "MpesaMultiplatformSdk",
-            path: "xcReleaseFramework/MpesaMultiplatformSdk.xcframework"
+            url: "https://github.com/nand-industries/mpesa-multiplatform-sdk/releases/download/2.0.1/MpesaMultiplatformSdk.xcframework.zip",
+            checksum: "a7bee71854bfec181b4efb2d0445303079d08da67a6b41bc6e3db2624d6b8f04"
         ),
     ]
 )
