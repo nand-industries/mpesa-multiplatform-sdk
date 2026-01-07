@@ -51,9 +51,6 @@ sandbox vs production behavior before shipping.
 
 ### Install the dependency
 
-> **Note:** Distribution is being finalized. The snippets below show how it will look once
-> published. Until then, use the included sample apps or consume the SDK via source.
-
 **Gradle (Android)**
 
 ```kts
@@ -68,9 +65,7 @@ dependencies {
 
 **SwiftPM (iOS)**
 
-```swift
-.package(url: "https://github.com/nand-industries/mpesa-multiplatform-sdk.git", from: "<version>")
-```
+Check the full installation guide [here](https://github.com/nand-industries/mpesa-multiplatform-sdk-swift-package?tab=readme-ov-file#installation-xcode).
 
 ### Initialize the SDK
 
@@ -136,19 +131,36 @@ MpesaMultiplatformNavigationGraph(
 **iOS (SwiftUI/UIKit host)**
 
 ```swift
-let controller = MainViewController(
-    businessName: "Sample Shop",
-    businessLogoUrl: "yourbusinesslogo.xyz",
-    transactionReference: "T123456",
-    thirdPartyReference: "12345",
-    defaultAmount: "499.50",
-    defaultPhoneNumber: "841234567"
-)
-present(controller, animated: true)
-```
+import UIKit
+import SwiftUI
+import MpesaMultiplatformSdk
 
-> `MainViewController` delegates rendering to the shared Compose navigation graph, so the UI matches
-> Android.
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            MpesaCheckoutView()
+        }
+    }
+}
+
+struct MpesaCheckoutView: UIViewControllerRepresentable {
+
+    func makeUIViewController(context: Context) -> UIViewController {
+        MainKt.MainViewController(
+            businessName: "Sample Shop",
+            businessLogoUrl: "yourbusinesslogo.xyz",
+            transactionReference: "T123456",
+            thirdPartyReference: "12345",
+            defaultAmount: "499.50",
+            defaultPhoneNumber: "841234567",
+            onDismissInputTransactionDetailsStep: {}
+        )
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+    }
+}
+```
 
 ### Observe transaction results
 
